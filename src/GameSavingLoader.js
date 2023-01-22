@@ -5,10 +5,14 @@ import GameSaving from './GameSaving';
 export default class GameSavingLoader {
   static load() {
     read()
-      .then((responce) => json(responce))
-      .then((response) => {
-        const gameSaving = new GameSaving();
-        return gameSaving = response;
+      .then((responce1) => {
+        console.log(responce1)
+        json(responce1)})
+      .then((responce2) => {
+        console.log(responce2)
+        return new GameSaving(responce2.id, responce2.created, responce2.userInfo);
       });
   }
 }
+
+const save = GameSavingLoader.load();
