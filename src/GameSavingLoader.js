@@ -4,15 +4,11 @@ import GameSaving from './GameSaving';
 
 export default class GameSavingLoader {
   static load() {
-    read()
-      .then((responce1) => {
-        console.log(responce1)
-        json(responce1)})
+    return read()
+      .then((responce1) => json(responce1))
       .then((responce2) => {
-        console.log(responce2)
-        return new GameSaving(responce2.id, responce2.created, responce2.userInfo);
+        const obj = JSON.parse(responce2);
+        return new GameSaving(obj.id, obj.created, obj.userInfo);
       });
   }
 }
-
-const save = GameSavingLoader.load();
